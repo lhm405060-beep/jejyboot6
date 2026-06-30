@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>머리가 복잡할 때 떠나기 좋은 여행지 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#fdf6ee;
+    --sand:#f5e6d3;
+    --terracotta:#c9714f;
+    --terracotta-soft:#e3a385;
+    --brown:#5c4434;
+    --brown-soft:#8a6f5c;
+    --gold:#d9a05b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Noto Sans KR',sans-serif;
+    background:var(--cream);
+    color:var(--brown);
+    line-height:1.8;
+    overflow-x:hidden;
+  }
+  .serif{font-family:'Gowun Batang',serif;}
+
+  /* ===== HERO ===== */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:2rem;
+    position:relative;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(217,160,91,.18), transparent 45%),
+      radial-gradient(circle at 80% 70%, rgba(201,113,79,.16), transparent 50%),
+      linear-gradient(160deg, #fdf6ee 0%, #f5e6d3 100%);
+  }
+  .hero .tag{
+    font-size:.85rem;
+    letter-spacing:.4em;
+    color:var(--terracotta);
+    text-transform:uppercase;
+    margin-bottom:1.5rem;
+    opacity:0;
+    animation:fadeUp 1s .2s forwards;
+  }
+  .hero h1{
+    font-family:'Gowun Batang',serif;
+    font-size:clamp(2.2rem,6vw,4.2rem);
+    font-weight:700;
+    color:var(--brown);
+    line-height:1.35;
+    margin-bottom:1.5rem;
+    opacity:0;
+    animation:fadeUp 1s .4s forwards;
+  }
+  .hero h1 .accent{color:var(--terracotta);}
+  .hero p{
+    max-width:540px;
+    font-size:1.05rem;
+    font-weight:300;
+    color:var(--brown-soft);
+    margin-bottom:2.5rem;
+    opacity:0;
+    animation:fadeUp 1s .6s forwards;
+  }
+  .scroll-hint{
+    font-size:.8rem;
+    letter-spacing:.2em;
+    color:var(--brown-soft);
+    opacity:0;
+    animation:fadeUp 1s .9s forwards;
+  }
+  .scroll-hint span{display:block;font-size:1.4rem;margin-top:.4rem;animation:bounce 2s infinite;}
+
+  /* ===== INTRO ===== */
+  .intro{
+    text-align:center;
+    padding:5rem 2rem 1rem;
+    max-width:680px;
+    margin:0 auto;
+  }
+  .intro .serif{
+    font-size:clamp(1.3rem,3vw,1.7rem);
+    color:var(--brown);
+    line-height:1.9;
+  }
+  .divider{
+    width:60px;height:2px;
+    background:var(--terracotta-soft);
+    margin:2.5rem auto;
+    border-radius:2px;
+  }
+
+  /* ===== CARDS ===== */
+  .places{
+    max-width:920px;
+    margin:0 auto;
+    padding:2rem 1.5rem 4rem;
+  }
+  .card{
+    background:#fff;
+    border-radius:24px;
+    overflow:hidden;
+    margin-bottom:3.5rem;
+    box-shadow:0 18px 45px -25px rgba(92,68,52,.45);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity .9s ease, transform .9s ease;
+  }
+  .card.in{opacity:1;transform:translateY(0);}
+  .card-visual{
+    min-height:300px;
+    position:relative;
+    display:flex;
+    align-items:flex-end;
+    padding:1.8rem;
+    color:#fff;
+  }
+  .card-visual .num{
+    position:absolute;
+    top:1.2rem;left:1.5rem;
+    font-family:'Gowun Batang',serif;
+    font-size:3.2rem;
+    font-weight:700;
+    opacity:.85;
+    text-shadow:0 2px 12px rgba(0,0,0,.25);
+  }
+  .card-visual .place-en{
+    font-size:.8rem;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    text-shadow:0 1px 8px rgba(0,0,0,.3);
+  }
+  .card-body{padding:2.4rem 2.2rem;}
+  .card-body h2{
+    font-family:'Gowun Batang',serif;
+    font-size:1.7rem;
+    color:var(--brown);
+    margin-bottom:.3rem;
+  }
+  .card-body .loc{
+    font-size:.85rem;
+    color:var(--terracotta);
+    letter-spacing:.05em;
+    margin-bottom:1.1rem;
+  }
+  .card-body p{
+    font-size:.97rem;
+    font-weight:300;
+    color:var(--brown-soft);
+    margin-bottom:1.3rem;
+  }
+  .tip{
+    background:var(--cream);
+    border-left:3px solid var(--gold);
+    border-radius:0 12px 12px 0;
+    padding:.85rem 1.1rem;
+    font-size:.88rem;
+    color:var(--brown);
+  }
+  .tip b{color:var(--terracotta);}
+
+  .v1{background:linear-gradient(150deg,#8a9a7b,#5c6b4c);}
+  .v2{background:linear-gradient(150deg,#6fa8b5,#3d7d8a);}
+  .v3{background:linear-gradient(150deg,#5b86b5,#7fa8d4);}
+  .v4{background:linear-gradient(150deg,#b5817f,#8a5450);}
+  .v5{background:linear-gradient(150deg,#d9a05b,#c9714f);}
+
+  /* ===== CLOSING ===== */
+  .closing{
+    text-align:center;
+    padding:5rem 2rem 6rem;
+    background:linear-gradient(0deg,#f5e6d3,transparent);
+  }
+  .closing .serif{
+    font-size:clamp(1.3rem,3.5vw,1.9rem);
+    color:var(--brown);
+    line-height:1.9;
+    max-width:560px;
+    margin:0 auto 1.5rem;
+  }
+  .closing small{
+    display:block;
+    color:var(--brown-soft);
+    font-size:.85rem;
+    margin-top:2.5rem;
+    letter-spacing:.05em;
+  }
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
+
+  @media(max-width:680px){
+    .card{grid-template-columns:1fr;}
+    .card-visual{min-height:200px;}
+    .card-body{padding:1.8rem 1.6rem;}
+  }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="tag">slow travel</div>
+    <h1>머리가 복잡할 때,<br>떠나기 좋은 <span class="accent">다섯 곳</span></h1>
+    <p>생각이 너무 많아질 때는 풍경을 바꿔보세요.<br>마음을 천천히 비워줄, 따뜻한 해외 여행지를 모았어요.</p>
+    <div class="scroll-hint">아래로 내려보기<span>↓</span></div>
+  </header>
+
+  <section class="intro">
+    <p class="serif">우리는 가끔, 아무 생각도 하지 않을 시간이 필요해요.<br>아래 다섯 곳은 일상의 소음에서 한 발 멀어지기에 좋은 곳들이에요.</p>
+    <div class="divider"></div>
+  </section>
+
+  <main class="places">
+
+    <article class="card">
+      <div class="card-visual v1">
+        <span class="num">01</span>
+        <span class="place-en">Kyoto, Japan</span>
+      </div>
+      <div class="card-body">
+        <h2>교토</h2>
+        <div class="loc">일본 · 비행 약 2시간</div>
+        <p>이끼 낀 사찰과 대나무 숲길을 천천히 걷다 보면, 머릿속 생각도 자연스레 가라앉아요. 빠르지 않아도 괜찮다고 도시 전체가 속삭여주는 곳이에요.</p>
+        <div class="tip"><b>이렇게 즐겨요</b> · 아라시야마 대숲 산책, 이른 아침 텅 빈 사찰에서 차 한 잔.</div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-visual v2">
+        <span class="num">02</span>
+        <span class="place-en">Ubud, Bali</span>
+      </div>
+      <div class="card-body">
+        <h2>발리 우붓</h2>
+        <div class="loc">인도네시아 · 비행 약 7시간</div>
+        <p>계단식 논의 초록과 따뜻한 햇살, 그리고 요가와 명상의 도시. 휴대폰을 잠시 내려두고 자연의 리듬에 몸을 맡기기 좋은 곳이에요.</p>
+        <div class="tip"><b>이렇게 즐겨요</b> · 테갈랄랑 라이스테라스 산책, 아침 요가 클래스 한 번.</div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-visual v3">
+        <span class="num">03</span>
+        <span class="place-en">Santorini, Greece</span>
+      </div>
+      <div class="card-body">
+        <h2>산토리니</h2>
+        <div class="loc">그리스 · 비행 약 13시간</div>
+        <p>새하얀 벽과 파란 바다, 그리고 세상에서 가장 느린 노을. 멍하니 수평선을 바라보는 것만으로 마음이 환기되는 곳이에요.</p>
+        <div class="tip"><b>이렇게 즐겨요</b> · 이아 마을 일몰 감상, 칼데라 절벽 카페에서 무계획의 오후.</div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-visual v4">
+        <span class="num">04</span>
+        <span class="place-en">Reykjavík, Iceland</span>
+      </div>
+      <div class="card-body">
+        <h2>아이슬란드</h2>
+        <div class="loc">아이슬란드 · 경유 약 15시간</div>
+        <p>광활한 자연 앞에 서면 고민이 작게 느껴져요. 온천에 몸을 담그고 밤하늘 오로라를 기다리는 시간은 그 자체로 위로가 됩니다.</p>
+        <div class="tip"><b>이렇게 즐겨요</b> · 블루라군 온천, 한적한 도로를 달리는 자연 드라이브.</div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-visual v5">
+        <span class="num">05</span>
+        <span class="place-en">Banff, Canada</span>
+      </div>
+      <div class="card-body">
+        <h2>밴프</h2>
+        <div class="loc">캐나다 로키 · 비행 약 11시간</div>
+        <p>에메랄드빛 호수와 웅장한 산이 둘러싼 작은 마을. 맑은 공기를 깊게 들이마시며 걷다 보면 머리가 한결 가벼워져요.</p>
+        <div class="tip"><b>이렇게 즐겨요</b> · 레이크 루이스 호숫가 산책, 곤돌라 타고 산 위에서 멍 때리기.</div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="closing">
+    <p class="serif">완벽한 계획 없이 떠나도 괜찮아요.<br>가장 좋은 여행은, 나에게 숨 쉴 틈을 주는 여행이니까요.</p>
+    <div class="divider"></div>
+    <small>천천히 떠나는 여행을 위한 작은 추천 · made with care</small>
+  </footer>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{threshold:.2});
+  cards.forEach(c=>io.observe(c));
+</script>
+</body>
+</html>
